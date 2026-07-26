@@ -52,6 +52,15 @@ function copyMetadata(metadata: MessageMetadata): MessageMetadata {
   if (typeof metadata !== "object" || metadata === null) {
     throw new ProtocolError("invalid_argument", "metadata must be an object");
   }
+  if (
+    !(metadata.conversationId instanceof Uint8Array) ||
+    !(metadata.senderDeviceId instanceof Uint8Array)
+  ) {
+    throw new ProtocolError(
+      "invalid_identifier",
+      "conversationId and senderDeviceId must be byte arrays",
+    );
+  }
 
   return {
     conversationId: Uint8Array.from(metadata.conversationId),
