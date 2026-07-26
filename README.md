@@ -36,6 +36,9 @@ a compact, text-safe encrypted envelope reference:
 4. TDD protocol framing and content-key encryption reference.
 5. Cross-platform test-vector format.
 
+The precise experimental wire format is documented in
+[`docs/protocol-v1.md`](docs/protocol-v1.md).
+
 The content-key reference deliberately does **not** implement contact discovery,
 identity authentication, forward secrecy, post-compromise security, groups, or
 multi-device state. Those require a reviewed session protocol and are tracked as
