@@ -25,6 +25,8 @@ const GCM_TAG_BYTES = 16;
 const MAX_PLAINTEXT_BYTES = MAX_CIPHERTEXT_BYTES - GCM_TAG_BYTES;
 const subtle = webcrypto.subtle;
 
+type OwnedBytes = Uint8Array<ArrayBuffer>;
+
 export interface OpenedBytes {
   plaintext: Uint8Array;
   metadata: MessageMetadata;
@@ -35,7 +37,11 @@ export interface OpenedText {
   metadata: MessageMetadata;
 }
 
-function copyContentKey(contentKey: Uint8Array): Uint8Array {
+function copyBytes(bytes: Uint8Array): OwnedBytes {
+  return Uint8Array.from(bytes);
+}
+
+function copyContentKey(contentKey: Uint8Array): OwnedBytes {
   if (
     !(contentKey instanceof Uint8Array) ||
     contentKey.byteLength !== CONTENT_KEY_BYTES
@@ -45,7 +51,7 @@ function copyContentKey(contentKey: Uint8Array): Uint8Array {
       `content key must be exactly ${CONTENT_KEY_BYTES} bytes`,
     );
   }
-  return Uint8Array.from(contentKey);
+  return copyBytes(contentKey);
 }
 
 function copyMetadata(metadata: MessageMetadata): MessageMetadata {
@@ -88,7 +94,7 @@ function envelopeFor(
 }
 
 async function importContentKey(
-  contentKey: Uint8Array,
+  contentKey: OwnedBytes,
   usage: "encrypt" | "decrypt",
 ): Promise<webcrypto.CryptoKey> {
   return subtle.importKey(
@@ -100,8 +106,8 @@ async function importContentKey(
   );
 }
 
-export function generateContentKey(): Uint8Array {
-  return Uint8Array.from(randomBytes(CONTENT_KEY_BYTES));
+export function generateContentKey(): OwnedBytes {
+  return copyBytes(randomBytes(CONTENT_KEY_BYTES));
 }
 
 export async function sealBytes(
@@ -124,10 +130,10 @@ export async function sealBytes(
 
   const keyBytes = copyContentKey(contentKey);
   const stableMetadata = copyMetadata(metadata);
-  const nonce = Uint8Array.from(randomBytes(NONCE_BYTES));
-  const plaintextCopy = Uint8Array.from(plaintext);
+  const nonce = copyBytes(randomBytes(NONCE_BYTES));
+  const plaintextCopy = copyBytes(plaintext);
   const emptyEnvelope = envelopeFor(stableMetadata, nonce, new Uint8Array());
-  const additionalData = encodeAuthenticatedHeader(emptyEnvelope);
+  const additionalData = copyBytes(encodeAuthenticatedHeader(emptyEnvelope));
 
   try {
     const key = await importContentKey(keyBytes, "encrypt");
@@ -181,19 +187,21 @@ export async function openBytes(
   }
 
   const keyBytes = copyContentKey(contentKey);
-  const additionalData = encodeAuthenticatedHeader(envelope);
+  const nonce = copyBytes(envelope.nonce);
+  const ciphertext = copyBytes(envelope.ciphertext);
+  const additionalData = copyBytes(encodeAuthenticatedHeader(envelope));
 
   try {
     const key = await importContentKey(keyBytes, "decrypt");
     const decrypted = await subtle.decrypt(
       {
         name: "AES-GCM",
-        iv: envelope.nonce,
+        iv: nonce,
         additionalData,
         tagLength: GCM_TAG_BYTES * 8,
       },
       key,
-      envelope.ciphertext,
+      ciphertext,
     );
 
     return {
