@@ -105,6 +105,19 @@ test("rejects an incorrectly sized content key", async () => {
   );
 });
 
+test("rejects non-byte metadata instead of coercing it", async () => {
+  await assert.rejects(
+    () =>
+      sealText("private", generateContentKey(), {
+        ...metadata,
+        senderDeviceId:
+          "0123456789abcdef" as unknown as typeof metadata.senderDeviceId,
+      }),
+    (error: unknown) =>
+      error instanceof ProtocolError && error.code === "invalid_identifier",
+  );
+});
+
 test("authenticates bytes before performing strict UTF-8 decoding", async () => {
   const key = generateContentKey();
   const wire = await sealBytes(Uint8Array.of(0xff), key, metadata);

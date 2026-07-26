@@ -25,8 +25,8 @@ function validEnvelope() {
     messageType: MessageType.Direct,
     cipherSuite: CipherSuite.Aes256GcmContentKey,
     flags: 0,
-    conversationId,
-    senderDeviceId,
+    conversationId: Uint8Array.from(conversationId),
+    senderDeviceId: Uint8Array.from(senderDeviceId),
     sequence: 42n,
     nonce,
     ciphertext,
@@ -52,7 +52,8 @@ test("encodes the published v1 framing vector exactly", async () => {
 });
 
 test("decodes every v1 field without sharing mutable input buffers", () => {
-  const wire = encodeEnvelope(validEnvelope());
+  const input = validEnvelope();
+  const wire = encodeEnvelope(input);
   const decoded = decodeEnvelope(wire);
 
   assert.equal(decoded.version, 1);
@@ -65,7 +66,7 @@ test("decodes every v1 field without sharing mutable input buffers", () => {
   assert.deepEqual(decoded.nonce, nonce);
   assert.deepEqual(decoded.ciphertext, ciphertext);
 
-  conversationId[0] = 0xff;
+  input.conversationId[0] = 0xff;
   assert.equal(decoded.conversationId[0], 0);
 });
 
