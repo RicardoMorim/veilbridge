@@ -1,0 +1,16 @@
+{
+  "name": "envelope-v1-minimal-ciphertext",
+  "description": "Deterministic framing vector. The ciphertext is an opaque byte sequence, not a cryptographic vector.",
+  "wire": "vb1.VkIBAQABAAABAgMEBQYHCAkKCwwNDg8QERITFBUWFxgZGhscHR4fAAAAAAAAACogISIjJCUmJygpKisAAAAE3q2-7w",
+  "fields": {
+    "version": 1,
+    "messageType": 1,
+    "cipherSuite": 1,
+    "flags": 0,
+    "conversationIdHex": "000102030405060708090a0b0c0d0e0f",
+    "senderDeviceIdHex": "101112131415161718191a1b1c1d1e1f",
+    "sequence": "42",
+    "nonceHex": "202122232425262728292a2b",
+    "ciphertextHex": "deadbeef"
+  }
+}
