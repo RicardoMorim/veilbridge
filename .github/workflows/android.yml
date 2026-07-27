@@ -46,6 +46,15 @@ jobs:
         working-directory: android
         run: ./gradlew :protocol:test :app:lintDebug :app:assembleDebug --no-daemon
 
+      - name: Upload lint reports
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: veilbridge-android-lint
+          path: android/app/build/reports/lint-results-debug.*
+          if-no-files-found: ignore
+          retention-days: 14
+
       - name: Upload debug APK
         uses: actions/upload-artifact@v7
         with:
