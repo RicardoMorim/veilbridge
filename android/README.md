@@ -14,7 +14,7 @@ it locally, and sends only a `vb1.…` text payload through Android's share shee
 - Android Studio Quail 2 (2026.1.2) or another version that supports Android
   Gradle Plugin 9.3.
 - JDK 17 selected for Gradle.
-- Android SDK Platform 37 and Android SDK Build-Tools 36.0.0.
+- Android SDK Platform 36 and Android SDK Build-Tools 36.0.0.
 - Two Android 8.0 (API 26) or newer devices or emulators for the full test.
 
 The repository includes the Gradle 9.5.1 wrapper and verifies its distribution
@@ -28,7 +28,7 @@ checksum.
 3. If prompted, trust the project.
 4. Open **Settings > Build, Execution, Deployment > Build Tools > Gradle** and
    select JDK 17.
-5. Open **Tools > SDK Manager** and install Android SDK Platform 37 and Android
+5. Open **Tools > SDK Manager** and install Android SDK Platform 36 and Android
    SDK Build-Tools 36.0.0.
 6. Allow Gradle sync to finish.
 7. Create two API 26+ virtual devices in **Tools > Device Manager**, or connect
