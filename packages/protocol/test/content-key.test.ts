@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 import {
@@ -129,4 +130,35 @@ test("authenticates bytes before performing strict UTF-8 decoding", async () => 
     (error: unknown) =>
       error instanceof ProtocolError && error.code === "invalid_utf8",
   );
+});
+
+test("opens the published Android interoperability vector", async () => {
+  const vectorUrl = new URL(
+    "../../../test-vectors/content-key-v1.json",
+    import.meta.url,
+  );
+  const vector = JSON.parse(await readFile(vectorUrl, "utf8")) as {
+    contentKeyHex: string;
+    plaintextUtf8: string;
+    wire: string;
+    fields: {
+      conversationIdHex: string;
+      senderDeviceIdHex: string;
+      sequence: string;
+    };
+  };
+  const key = Uint8Array.from(Buffer.from(vector.contentKeyHex, "hex"));
+
+  const opened = await openText(vector.wire, key);
+
+  assert.equal(opened.plaintext, vector.plaintextUtf8);
+  assert.deepEqual(
+    opened.metadata.conversationId,
+    Uint8Array.from(Buffer.from(vector.fields.conversationIdHex, "hex")),
+  );
+  assert.deepEqual(
+    opened.metadata.senderDeviceId,
+    Uint8Array.from(Buffer.from(vector.fields.senderDeviceIdHex, "hex")),
+  );
+  assert.equal(opened.metadata.sequence, BigInt(vector.fields.sequence));
 });
