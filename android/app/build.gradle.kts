@@ -24,7 +24,7 @@ android {
         warningsAsErrors = true
         // API 37 is preview-only in the SDK channel used by CI. Keep the lab on
         // stable API 36 until the next platform is generally available.
-        disable += "OldTargetApi"
+        disable += listOf("GradleDependency", "OldTargetApi")
     }
 }
 

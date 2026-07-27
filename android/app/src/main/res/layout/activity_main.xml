@@ -3,7 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/veilbridge_surface"
     android:fillViewport="true">
 
     <LinearLayout
@@ -44,18 +43,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="monospace"
-            android:hint="@string/key_hint"
             android:importantForAutofill="no"
             android:inputType="textVisiblePassword|textNoSuggestions"
             android:maxLines="2" />
 
         <LinearLayout
+            style="?android:attr/buttonBarStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/generate_key_button"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -63,6 +63,7 @@
 
             <Button
                 android:id="@+id/copy_key_button"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -70,6 +71,7 @@
 
             <Button
                 android:id="@+id/paste_key_button"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -90,7 +92,7 @@
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:gravity="top|start"
-            android:hint="@string/plaintext_hint"
+            android:importantForAutofill="no"
             android:inputType="textCapSentences|textMultiLine"
             android:padding="10dp" />
 
@@ -116,18 +118,20 @@
             android:layout_height="150dp"
             android:fontFamily="monospace"
             android:gravity="top|start"
-            android:hint="@string/carrier_hint"
+            android:importantForAutofill="no"
             android:inputType="textMultiLine|textNoSuggestions"
             android:padding="10dp"
             android:textSize="12sp" />
 
         <LinearLayout
+            style="?android:attr/buttonBarStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/paste_payload_button"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -135,6 +139,7 @@
 
             <Button
                 android:id="@+id/copy_payload_button"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -142,6 +147,7 @@
 
             <Button
                 android:id="@+id/share_payload_button"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

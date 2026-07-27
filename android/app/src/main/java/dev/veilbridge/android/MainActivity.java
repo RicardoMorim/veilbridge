@@ -124,9 +124,9 @@ public final class MainActivity extends Activity {
             String wire = carrierInput.getText().toString().trim();
             VeilBridgeProtocol.OpenedText opened = protocol.openText(wire, key);
             decryptedOutput.setText(opened.getPlaintext());
-            showSuccess(
-                    "Authenticated and decrypted locally. Metadata sequence: "
-                            + opened.getMetadata().getSequence());
+            showSuccess(getString(
+                    R.string.status_decrypted,
+                    opened.getMetadata().getSequence().toString()));
         } catch (ProtocolException error) {
             decryptedOutput.setText(R.string.decrypted_empty);
             showError(error);
@@ -226,7 +226,10 @@ public final class MainActivity extends Activity {
     }
 
     private void showError(ProtocolException error) {
-        statusOutput.setText(error.getCode() + ": " + error.getMessage());
+        statusOutput.setText(getString(
+                R.string.status_error,
+                error.getCode(),
+                error.getMessage()));
         statusOutput.setTextColor(getColor(R.color.veilbridge_error));
     }
 }
