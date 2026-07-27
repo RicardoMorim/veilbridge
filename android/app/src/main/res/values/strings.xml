@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">VeilBridge Lab</string>
+    <string name="title">VeilBridge Android Lab</string>
+    <string name="prototype_warning">Research prototype only. The shared-key cipher proves carrier encryption, but it does not yet provide identity verification, forward secrecy, or safe key exchange.</string>
+    <string name="key_label">Shared test key</string>
+    <string name="generate_key">Generate</string>
+    <string name="copy_key">Copy key</string>
+    <string name="paste_key">Paste</string>
+    <string name="plaintext_label">Private text</string>
+    <string name="encrypt">Encrypt into carrier text</string>
+    <string name="carrier_label">Carrier payload</string>
+    <string name="paste_payload">Paste</string>
+    <string name="copy_payload">Copy</string>
+    <string name="share_payload">Share via…</string>
+    <string name="decrypt">Decrypt locally</string>
+    <string name="decrypted_label">Decrypted result</string>
+    <string name="decrypted_empty">Nothing decrypted yet.</string>
+    <string name="status_ready">Ready. Use the same test key on both devices.</string>
+    <string name="status_decrypted">Authenticated and decrypted locally. Metadata sequence: %1$s</string>
+    <string name="status_error">%1$s: %2$s</string>
+    <string name="share_chooser">Send encrypted VeilBridge payload</string>
+</resources>

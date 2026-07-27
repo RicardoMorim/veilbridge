@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/title"
+            android:textColor="@color/veilbridge_primary"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="#FFF3E0"
+            android:padding="12dp"
+            android:text="@string/prototype_warning"
+            android:textColor="@color/veilbridge_warning"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:labelFor="@id/key_input"
+            android:text="@string/key_label"
+            android:textColor="@color/veilbridge_primary"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/key_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:importantForAutofill="no"
+            android:inputType="textVisiblePassword|textNoSuggestions"
+            android:maxLines="2" />
+
+        <LinearLayout
+            style="?android:attr/buttonBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/generate_key_button"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/generate_key" />
+
+            <Button
+                android:id="@+id/copy_key_button"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/copy_key" />
+
+            <Button
+                android:id="@+id/paste_key_button"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/paste_key" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:labelFor="@id/plaintext_input"
+            android:text="@string/plaintext_label"
+            android:textColor="@color/veilbridge_primary"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/plaintext_input"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:gravity="top|start"
+            android:importantForAutofill="no"
+            android:inputType="textCapSentences|textMultiLine"
+            android:padding="10dp" />
+
+        <Button
+            android:id="@+id/encrypt_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/encrypt" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:labelFor="@id/carrier_input"
+            android:text="@string/carrier_label"
+            android:textColor="@color/veilbridge_primary"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/carrier_input"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:fontFamily="monospace"
+            android:gravity="top|start"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine|textNoSuggestions"
+            android:padding="10dp"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            style="?android:attr/buttonBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/paste_payload_button"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/paste_payload" />
+
+            <Button
+                android:id="@+id/copy_payload_button"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/copy_payload" />
+
+            <Button
+                android:id="@+id/share_payload_button"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/share_payload" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/decrypt_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/decrypt" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="@string/decrypted_label"
+            android:textColor="@color/veilbridge_primary"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/decrypted_output"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#E8F5E9"
+            android:minHeight="72dp"
+            android:padding="12dp"
+            android:text="@string/decrypted_empty"
+            android:textIsSelectable="true"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/status_output"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:paddingBottom="24dp"
+            android:text="@string/status_ready"
+            android:textColor="@color/veilbridge_success"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,14 @@
+{
+  "name": "content-key-v1-aes-256-gcm",
+  "description": "Deterministic AES-256-GCM interoperability vector. The fixed key and nonce are test data only.",
+  "contentKeyHex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+  "plaintextUtf8": "hello from android",
+  "wire": "vb1.VkIBAQABAAABAgMEBQYHCAkKCwwNDg8QERITFBUWFxgZGhscHR4fAAAAAAAAACogISIjJCUmJygpKisAAAAiul_KHAO4fHx1EWKvr3yGlrktZR-z6KvHY-bt-gKqDNVcdg",
+  "fields": {
+    "conversationIdHex": "000102030405060708090a0b0c0d0e0f",
+    "senderDeviceIdHex": "101112131415161718191a1b1c1d1e1f",
+    "sequence": "42",
+    "nonceHex": "202122232425262728292a2b",
+    "ciphertextHex": "ba5fca1c03b87c7c751162afaf7c8696b92d651fb3e8abc763e6edfa02aa0cd55c76"
+  }
+}

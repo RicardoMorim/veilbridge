@@ -49,6 +49,7 @@ later milestones.
 ```text
 docs/                       Requirements, risks, architecture, and decisions
 packages/protocol/          TypeScript protocol reference and tests
+android/                    Java protocol port and Android Studio test harness
 test-vectors/               Language-neutral interoperability vectors
 .github/workflows/          Continuous integration
 ```
@@ -62,6 +63,10 @@ npm install
 npm test
 npm run typecheck
 ```
+
+To run the Android two-device test, open the repository's `android/` directory
+in Android Studio and follow [`android/README.md`](android/README.md). The
+Android lab has no Internet permission and shares only `vb1.…` carrier text.
 
 ## Clean-room policy
 
