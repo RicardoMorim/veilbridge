@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="veilbridge_primary">#143D59</color>
+    <color name="veilbridge_accent">#00A896</color>
+    <color name="veilbridge_warning">#8A4B08</color>
+    <color name="veilbridge_error">#B3261E</color>
+    <color name="veilbridge_success">#146C43</color>
+    <color name="veilbridge_surface">#F5F8FA</color>
+</resources>
